@@ -17,14 +17,8 @@ export class ListarGifComponent implements OnInit {
   }
 
   mostrarGif() {
-    this.gifService.getGifs().subscribe({
-      next: (gifs) => {
-        this.lista = gifs.data;
-        console.log(this.lista);
-      },
-      error: (e) => {
-        console.log(e);
-      },
+    this.gifService.listaProductos.subscribe((lista) => {
+      this.lista = lista;
     });
   }
 }

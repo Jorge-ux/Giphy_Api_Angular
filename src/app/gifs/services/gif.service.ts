@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
-import { GIFExpert } from '../interfaces/gif.interface';
+import { Datum, GIFExpert } from '../interfaces/gif.interface';
 import { environment } from '../../../environments/environments';
 
 @Injectable({
@@ -9,6 +9,10 @@ import { environment } from '../../../environments/environments';
 })
 export class GifService {
   baseUrl = environment.baseURL;
+  apiKey = environment.apiKey;
+  complement = environment.complement;
+  fullApi = environment.baseURLFull;
+  listaProductos = new EventEmitter<Datum[]>();
 
   constructor(private http: HttpClient) {}
 
@@ -16,9 +20,11 @@ export class GifService {
   // any => en caso de que falle la respuesta, se tiene que capturar
 
   // pipe => para controlar la respuesta error, en este caso sera un array vacio
-  getGifs(): Observable<GIFExpert | any> {
+  getGifs(term: string): Observable<GIFExpert | any> {
     return this.http
-      .get<GIFExpert>(this.baseUrl)
+      .get<GIFExpert>(
+        `${this.baseUrl}${this.apiKey}&q=${term}${this.complement}`
+      )
       .pipe(catchError(() => of([])));
   }
 }
