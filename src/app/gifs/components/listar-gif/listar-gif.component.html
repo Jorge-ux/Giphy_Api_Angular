@@ -1,7 +1,8 @@
-<div *ngFor="let item of lista">
-    <h3>
-        {{item.title}}
-
-    </h3>
-    <img src="{{item.images.original['url']}}">
+<div class="grid-card">
+    <div class="card" *ngFor="let item of lista">
+        <!-- <h3>
+            {{item.title}}
+        </h3> -->
+        <img src="{{item.images.original['url']}}">
+    </div>
 </div>
