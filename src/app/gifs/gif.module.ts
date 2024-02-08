@@ -5,10 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ListarGifComponent } from './components/listar-gif/listar-gif.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { GifRoutingModule } from './gif-routing.module';
 
 @NgModule({
   imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
-  exports: [HomePageComponent],
+  exports: [GifRoutingModule],
   declarations: [BuscarGifComponent, ListarGifComponent, HomePageComponent],
   providers: [],
 })

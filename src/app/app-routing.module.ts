@@ -5,7 +5,8 @@ import { HomePageComponent } from './gifs/pages/home-page/home-page.component';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomePageComponent,
+    loadChildren: () =>
+      import('../app/gifs/gif.module').then((m) => m.gifModule),
   },
   {
     path: '**',
